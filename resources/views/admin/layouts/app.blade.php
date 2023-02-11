@@ -1,35 +1,67 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+<html lang="en">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
-
-        <!-- Fonts -->
-        <link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap">
-
-        <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
-    </head>
-    <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100">
-            @include('admin.layouts.navigation')
-
-            <!-- Page Heading -->
-            @if (isset($header))
-                <header class="bg-white shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
-                    </div>
-                </header>
-            @endif
-
-            <!-- Page Content -->
-            <main>
-                {{ $slot }}
-            </main>
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Majestic Admin</title>
+  <!-- plugins:css -->
+  <link rel="stylesheet" href="{{url("admin/vendors/mdi/css/materialdesignicons.min.css")}}">
+  <link rel="stylesheet" href="{{url("admin/vendors/base/vendor.bundle.base.css")}}">
+  <!-- endinject -->
+  <!-- plugin css for this page -->
+  <link rel="stylesheet" href="{{url("admin/vendors/datatables.net-bs4/dataTables.bootstrap4.css")}}">
+  <!-- End plugin css for this page -->
+  <!-- inject:css -->
+  <link rel="stylesheet" href="{{url("admin/css/style.css")}}">
+  <!-- endinject -->
+  <link rel="shortcut icon" href="{{url("admin/images/favicon.png")}}" />
+</head>
+<body>
+  <div class="container-scroller">
+    <!-- partial:partials/_navbar.html -->
+    @include('admin.layouts.navbar')
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+      <!-- partial:partials/_sidebar.html -->
+    @include('admin.pages.partials._sidebar')
+      <!-- partial -->
+      <div class="main-panel">
+        <div class="content-wrapper">
+            {{$slot}}
         </div>
-    </body>
+        <!-- content-wrapper ends -->
+        <!-- partial:partials/_footer.html -->
+        @include('admin.pages.partials._footer')
+        <!-- partial -->
+      </div>
+      <!-- main-panel ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+  </div>
+  <!-- container-scroller -->
+
+  <!-- plugins:js -->
+  <script src="{{asset("admin/vendors/base/vendor.bundle.base.js")}}"></script>
+  <!-- endinject -->
+  <!-- Plugin js for this page-->
+  <script src="{{asset("vendors/chart.js/Chart.min.js")}}"></script>
+  <script src="{{asset("vendors/datatables.net/jquery.dataTables.js")}}"></script>
+  <script src="{{asset("vendors/datatables.net-bs4/dataTables.bootstrap4.js")}}"></script>
+  <!-- End plugin js for this page-->
+  <!-- inject:js -->
+  <script src="{{asset("admin/js/off-canvas.js")}}"></script>
+  <script src="{{asset("admin/js/hoverable-collapse.js")}}"></script>
+  <script src="{{asset("admin/js/template.js")}}"></script>
+  <!-- endinject -->
+  <!-- Custom js for this page-->
+  <script src="{{asset("admin/js/dashboard.js")}}"></script>
+  <script src="{{asset("admin/js/data-table.js")}}"></script>
+  <script src="{{asset("admin/js/jquery.dataTables.js")}}"></script>
+  <script src="{{asset("admin/js/dataTables.bootstrap4.js")}}"></script>
+  <!-- End custom js for this page-->
+</body>
+
 </html>
+
